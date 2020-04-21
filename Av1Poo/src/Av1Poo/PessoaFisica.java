@@ -3,7 +3,7 @@ package Av1Poo;
 
 public abstract class PessoaFisica extends Pessoa{
 	private String cpf;
-	private String rg;
+	private String rg;//
 	
 	// Metodo Construtor
 	

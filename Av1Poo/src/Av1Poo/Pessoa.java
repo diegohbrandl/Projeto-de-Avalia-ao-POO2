@@ -5,7 +5,7 @@ import java.util.Date;
 public abstract class Pessoa {
 	private String nome;
 	private Date dataNascimento; 
-	private String estadoCivil;
+	private String estadoCivil;//
 	
 	// Metodos Acessores 
 	public String getNome() {

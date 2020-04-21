@@ -1,7 +1,6 @@
 package Av1Poo;
 
-import java.util.Date;
-
+import java.lang.Exception;
 public class Main {
 
 	public static void main(String[] args) {
@@ -17,13 +16,15 @@ public class Main {
 		diego.setMatricula(14596549);
 		diego.setTurma("inf233");
 		diego.setModalidadeEnsino("Presencial");*/
-		
+		diego.setAtivo(false);
 		diego.setMatricula(34);
+		System.out.println(diego.getMatricula());
 		diego.criarLogin();	
-		System.out.printf("\n\n" + diego.getMatricula());
-		System.out.printf( diego.getSenha() +"\n\n");
+		//System.out.println("Login ->>>>>" + diego.getLogin());
+		//System.out.println("Senha ->>>>>" +diego.getSenha());
+		//System.out.printf("\n =============================== \n");
 		diego.fazerLogin();
-		
+	
 		
 
 	}
