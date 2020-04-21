@@ -82,66 +82,48 @@ public class Academico extends PessoaFisica implements Login{
 		this.ativo = ativo;
 	}
 
-
-	
 	//METODOS PRINCIPAIS
 	
 	public  String getInformacaoDados()  {
 		String informacao = super.getInformacaoDados();
 		return 	informacao + 
-				"\n Numero Matricula: " + this.getMatricula() +
-				"\n Turma: " + this.getTurma() +
-				"\n Modalidade Ensino: " + this.getModalidadeEnsino() +
-				"\n DataMatricula: " + this.getDataMatricula();
+				"\n Academico Ativo -->>>>> " + this.isAtivo() +
+				"\n Numero Matricula -->>>>> " + this.getMatricula() +
+				"\n Turma -->>>>> " + this.getTurma() +
+				"\n Modalidade Ensino -->>>>> " + this.getModalidadeEnsino() +
+				"\n DataMatricula -->>>>> " + this.getDataMatricula();
 		
 	}
 	// METODOS SOBREPOSIÇAO DA INTERFACE LOGIN
 	
 	@Override
-	public void criarLogin() { // METODO PARA CRIAR UM LOGIN E SENHA DO ALUNO
+	public void cadastraLogin() { // METODO PARA CRIAR UM LOGIN 
 		
 		 Scanner teclado = new Scanner(System.in); // PARA O USUARIO INSERIR O DADO
-		 if (ativo == true) { // VERIFICA SE ALUNO ESTA ATIVO OU NAO
+		 
 			int continuar = 1; // VARIAVEL PARA CASO DE ALGO ERRADO POSSA CONTINUAR OU ENCERRAR
 			do { // INICIO DO WHILE 
 					
 			System.out.println("Insira sua Matricula");
+			
 			int m = teclado.nextInt(); // VARIAVEL DE COMPARAÇAO DA MATRICULA 
-			
-			if (  m == getMatricula() ) { // INICIO DO IF DE COMPARAÇAO DA MATRICULA
-				int[] cadastraSenha = new int[2]; // ARRAY PARA COMPARAR AS SENHAS DIGITADAS
-				
-				System.out.println("insira sua senha de 6 numeros"); 
-				 cadastraSenha[0] = teclado.nextInt(); // RECEBE A PRIMRIRA SENHA
-				 
-				 System.out.println("insira novamente");
-				 cadastraSenha[1] = teclado.nextInt();	 // RECEBE A SEGUNDA SENHA
-				
-				if(cadastraSenha[0] == cadastraSenha[1]) { // INICIO DO IF PARA COMPARAÇAO DAS SENHAS DIGITADAS [0,1]
-					  login = matricula; // RECEBE O VALOR PARA CADASTRAR O LOGIN NO GIOCONDA
-					  senha = cadastraSenha[1] ; // RECEBE O VALOR DA SENHA USADA PARA LOGIN NO GIOCONDA
-					  
-					 System.out.println("senha cadastrada "); // MENSAGEM QUE A SENHA ESTA CADASTRADA
-					 continuar = 0; // RECEBE O VALOR DE 0 PARA SAIR DO WHILE 
-				 }else { // INFORMA QUE AS SENHAS [0,1] NAO SAO IGUAIS
-					 System.out.println("senhas nao conferem");
-					 System.out.println("Tentar Novamente? ");
-					 System.out.println("1 para Sim ou 0 para nao"); // MENSAGEM PAARA VOLTAR PARA O WHILE OU NAOo
-						continuar = teclado.nextInt(); // RECEBE O VALOR DIGITADO PARA TENTAR NOVAMENTE OU NAO
-				 } // FIM DO ELSE
-			} else { // ELSE DE COMPARAÇAO DA MATRUCULA SE FOI ENCONTRADA OU NAO
-				System.out.printf("matricula nao encontrada \n\n");
-				System.out.println("Tentar Novamente? ");
-				System.out.println("1 para Sim ou 0 para nao"); // MENSAGEM PARA VOLTAR PAAR O DO WHILE OU NAO
-				continuar = teclado.nextInt(); // RECEBE O VALOR DIGITADO PARA TENTAR NOVAMENTO OU NAO
-			} // FIM DO ELSE
-			
+			if (ativo == true) { // VERIFICA SE ALUNO ESTA ATIVO OU NAO
+					if (  m == getMatricula() ) { // INICIO DO IF DE COMPARAÇAO DA MATRICULA
+						System.out.printf(" \n Matricula Encontrada \n\n");
+						 login = matricula ; // LOGIN RECEBE A MATRICULA PARA ACESSO AO GIOCONDA
+						continuar = 0;
+					} else { // ELSE DE COMPARAÇAO DA MATRUCULA SE FOI ENCONTRADA OU NAO
+						System.out.printf("\n matricula nao encontrada \n ");
+						System.out.printf(" Tentar Novamente? ");
+						System.out.printf(" \n\n 1 para Sim ou 0 para nao \n"); // MENSAGEM PARA VOLTAR PAAR O DO WHILE OU NAO
+						continuar = teclado.nextInt(); // RECEBE O VALOR DIGITADO PARA TENTAR NOVAMENTO OU NAO
+							} // FIM DO ELSE
+			} else { // SE ALUNO ESTIVER INATIVO 
+				 System.out.println("Matricula " + this.getMatricula()+ " inativa  voce nao tem permissao ");
+				 continuar = 0;
+					
+				}// FIM DO ELSE DE VERIFICAÇAO ATIVO
 			}while (continuar != 0 ); // FIM DO WHILE // FAZ A COMPARAÇAO DO WHILE // 
-		 } else { // SE ALUNO ESTIVER INATIVO 
-			 System.out.println("Voce nao tem permissao");
-				
-			}// FIM DO ELSE DE VERIFICAÇAO ATIVO 
-		System.out.println("the end");// INDICA QUE O PROGRAMA CHEGOU AO FIM
 	} // FIM DO METODO CRIAR LOGIN
 
 	@Override
@@ -161,7 +143,7 @@ public class Academico extends PessoaFisica implements Login{
 					System.out.println("Bem vindo ao GIOCONDA"); // MENSAGEM DE SAUDAÇAO DO GIOCONDA 
 					continuar = 0; // VARIAVEL PARA SAIR DO WHILE 
 				} else { // ELSE DE COMPARAÇAO QUE LOGIN E SENHA NAO CONFEREM
-					System.out.println("Tente novamente"); 
+					System.out.println("Login ou Senha invalidos Tente novamente"); 
 					System.out.println("1 para Sim ou 0 para nao"); // MENSAGEM PARA VOLTAR PARA O WHILE OU NAO
 					continuar = teclado.nextInt(); // RECEBE O VALOR PARA CONTINUAR OU NAO
 				 }// FIM DO ELSE
@@ -169,13 +151,36 @@ public class Academico extends PessoaFisica implements Login{
  
 			System.out.println("the end \n"); // MENSAGEM DE ENCERRAMENTO DO PROGRAMA
 		} // FIM DO METODO FAZER LOGIN
-		
-		
+
 		
 	@Override
-	public void criarSenha() {
-		// TODO Auto-generated method stub
+	public void cadastraSenha() { // INICIO METODO PARA CADASTRAR SENHA
+		Scanner teclado = new Scanner(System.in);
+		int continuar = 1; // VARIAVEL PARA COMPARAÇAO CASO USUARIO DIGITE ALGO ERRADO
+		if((getMatricula() == getMatricula()) && (isAtivo()== true)) { // IF PARA VERIFICAR SE MATRICULA E VALIDA E ATIVA 
+		do { // INICIO DO DO WHILE
+			
+		int[] cadastraSenha = new int [2];  // ARRAY PARA COMPARAR AS SENHAS
+		System.out.println("Insira sua senha de 6 digitos");
+		cadastraSenha[0] = teclado.nextInt(); // RECEBE A PRIMEIRA SENHA
 		
-	}
+		System.out.println("insira novamente");
+		cadastraSenha[1] = teclado.nextInt(); // RECEBE A SEGUNDA SENHA
+		
+		if(cadastraSenha[0] == cadastraSenha[1]) { // IF DE COMPARAÇAO PARA VERIFICAR SE AS DUAS SENHAS SAO IGUAIS
+			System.out.println("Senha cadastrada com sucesso");
+			senha = cadastraSenha[1]; // SENHA RECEBE O VALOR CADASTRADO
+			continuar= 0; // VARIAVEL RECEBE O VALOR PARA SAIR DO WHILE
+		}else { // CASO AS SENHAS [1,2] NAO CONFEREM
+			System.out.println("senhas nao conferem \n");
+			System.out.println("Tentar Novamente? \n\n");
+			System.out.println("1 para Sim ou 0 para nao"); // MENSAGEM PAARA VOLTAR PARA O WHILE OU NAO
+			continuar = teclado.nextInt(); // RECEBE O VALOR DIGITADO PARA TENTAR NOVAMENTE OU NAO
+		}
+		}while (continuar != 0); // FIM DO WHILE
+		}else { // CASO A MATRICULA SEJA INVALIDA OU INATIVA
+			System.out.printf("Matricula invalida ou Matricula inativa!");
+		}// FIM DO ELSE
+	} // FIM DO METODO CADASTRA SENHA
 
-}
+	}

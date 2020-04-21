@@ -32,9 +32,9 @@ public abstract class Pessoa {
 
 	
 	public  String getInformacaoDados()  {
-		return  " Nome: " + this.getNome() +
-				"\n Data Nascimento: " + this.dataNascimento +
-				"\n Estado Civil: " + this.getEstadoCivil();
+		return  " Nome -->>>>> " + this.getNome() +
+				"\n Data Nascimento -->>>>> " + this.dataNascimento +
+				"\n Estado Civil -->>>>> " + this.getEstadoCivil();
 	}
 	
 

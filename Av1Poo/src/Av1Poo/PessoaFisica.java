@@ -33,8 +33,8 @@ public abstract class PessoaFisica extends Pessoa{
 	public  String getInformacaoDados()  {
 		String informacao = super.getInformacaoDados(); 
 		return informacao + 
-				"\n Cpf: " + this.getCpf() +
-				"\n Rg: " + this.getRg();
+				"\n Cpf -->>>>> " + this.getCpf() +
+				"\n Rg -->>>>> " + this.getRg();
 		
 	}
 }
