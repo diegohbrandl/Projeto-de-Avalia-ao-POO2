@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Academico diego = new Academico(null, null, 0, null, null, null, null);
-		
+		FuncionarioPolo funci = new FuncionarioPolo(null, null, null);
 		/*diego.setNome("Diego Hartwig");
 		//diego.setDataNascimento("24/05/1986");
 		diego.setEstadoCivil("Casado");
@@ -26,13 +26,20 @@ public class Main {
 		//System.out.printf("\n =============================== \n");
 		diego.fazerLogin();*/
 	//diego.criarSenha();
-		diego.setMatricula(34);
-		diego.setAtivo(true);
+		//diego.setMatricula(34);
+		//diego.setAtivo(true);
 		//diego.cadastraLogin();
 		//diego.cadastraSenha();
-		diego.fazerLogin();
+		//diego.fazerLogin();
+		funci.setCpf("0909");
+		funci.setAtivo(true);
+		funci.setMatricula(43);
+		System.out.println(" cpf " + funci.getCpf() );
+		System.out.println("ativo " + funci.isAtivo());
+		funci.cadastraLogin();
+		funci.cadastraSenha();
+		funci.fazerLogin();
 		
-
 	}
 
 }
